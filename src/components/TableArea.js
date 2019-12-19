@@ -1,34 +1,44 @@
 import React, { Component } from "react";
 import TableData from "./TableData";
-import API from "../utils/API";
 import TableHeadings from "../components/TableHeadings";
-import Nav from "../components/Nav";
+// import Nav from "../components/Nav";
+import API from "../utils/API";
 // import "../styles/DataArea.css";
 
 class TableArea extends Component {
-    state={
-        employees: {},
-        sortOrder: {},
-        filteredEmployees:{},
-
-    }
-
-    componentDidMount(){
-
-    }
-
-    searchMovies = query => {
-        API.search(query)
-          .then(res => this.setState({ result: res.data }))
-          .catch(err => console.log(err));
+      state = {
+        result:[{}],
+        filteredResult: [{}]
       };
-
-
-    render(){
-        return (
-        <h1>Hello Douglas!</h1>
-        )
+    
+  
+    // when our page loads we make axios call to get random users, and set our state with the results we get back
+    componentDidMount() {
+      API.getUsers().then(results => {
+        this.setState({
+          result: results,
+          filteredResult: results
+        })
+      });
     }
-}
 
+
+    render () {
+      return(
+        <div>
+    
+          <table class="table">
+          <TableHeadings />
+          {/* <TableData users={this.state.filteredResult} /> */}
+
+          </table>
+
+        </div>
+
+
+
+      )
+    }
+
+  }
 export default TableArea;
