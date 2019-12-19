@@ -12,6 +12,23 @@ class TableArea extends Component {
         filteredEmployees:{},
 
     }
+
+    componentDidMount(){
+
+    }
+
+    searchMovies = query => {
+        API.search(query)
+          .then(res => this.setState({ result: res.data }))
+          .catch(err => console.log(err));
+      };
+
+
+    render(){
+        return (
+        <h1>Hello Douglas!</h1>
+        )
+    }
 }
 
 export default TableArea;
